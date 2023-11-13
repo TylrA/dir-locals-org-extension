@@ -1,0 +1,12 @@
+;; first load .org.el from ancestral directories, if it exists
+(let ((this-directory default-directory))
+  (setq default-directory (expand-file-name "../" default-directory))
+  (while (not (file-exists-p (format "%s.org.el" default-directory)))
+    (setq default-directory (expand-file-name "../" default-directory)))
+  
+  (load-file (format "%s.org.el" default-directory))
+  (setq default-directory this-directory))
+;; done loading
+
+
+;; ----- start configuration -----
